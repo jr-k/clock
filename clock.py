@@ -48,10 +48,13 @@ def on_message(client, userdata, message):
     if topic == 'clock/zero' or topic == 'clock/zeros' or topic == 'clock/zeroes' or topic == 'clock/z':
         s_mode_reset()
         requests.get(TASMOTA_URL, params={'cmnd': 'SerialSend2 r'})
-    elif topic == 'clock/clear' or topic == 'clock/reset' or topic == 'clock/rst' or topic == 'clock/clr' or topic == 'clock/cls':
+    elif topic == 'clock/clear' or topic == 'clock/reset' or topic == 'clock/rst' or topic == 'clock/clr' or topic == 'clock/cls' or topic == 'clock/r':
         s_mode_reset()
         requests.get(TASMOTA_URL, params={'cmnd': 'SerialSend2 b'})
     elif topic == 'clock/increment' or topic == 'clock/i' or topic == 'clock/inc' or topic == 'clock/incr' or topic == 'clock/add':
+        if MODE != MODE_INCR:
+            requests.get(TASMOTA_URL, params={'cmnd': 'SerialSend2 b'})
+
         s_mode_incr()
         requests.get(TASMOTA_URL, params={'cmnd': 'SerialSend2 i'})
     elif topic == 'clock/time' or topic == 'clock/clock' or topic == 'clock/t':

@@ -1,0 +1,4 @@
+config = {
+    "tasmota_host": "192.168.1.103",
+    "mqtt_toml_file": "/etc/snips.toml"
+}

@@ -96,7 +96,7 @@ def on_message(client, userdata, message):
     elif topic == 'date' or topic == 'd':
         s_display(time.strftime('%d%m%y'))
         s_mode_date()
-    elif topic == 'info' or topic == 'v' elif topic == 'infos':
+    elif topic == 'info' or topic == 'v' or topic == 'infos':
         notify_state()
     elif topic == 'show' or topic == 'display' or topic == 'set' or topic == 's':
         requests.get(TASMOTA_URL, params={'cmnd': 'SerialSend2 b'})

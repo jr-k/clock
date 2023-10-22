@@ -43,11 +43,11 @@ MODE = MODE_TIME
 def s_display(msg):
     global DISPLAY
     DISPLAY = pad_with_zeros(str(msg))
-    print(f'Display: {DISPLAY}')
+    #print(f'Display: {DISPLAY}')
 
 def s_mode(smode):
     global MODE, DISPLAY, client
-    print(f'Mode: {smode}')
+    #print(f'Mode: {smode}')
     MODE = smode
     notify_state()
 
@@ -106,7 +106,7 @@ def on_message(client, userdata, message):
         try:
             requests.get(TASMOTA_URL, params=payload)
         except requests.RequestException as e:
-            print(f"Erreur de requête : {e}")
+            print(f"Tasmota request error : {e}")
 
 def on_log(client, userdata, level, buf):
     if level == mqtt.MQTT_LOG_ERR:
@@ -141,7 +141,7 @@ while True:
         try:
             requests.get(TASMOTA_URL, params=payload)
         except requests.RequestException as e:
-            print(f"Erreur de requête : {e}")
+            print(f"Tasmota request error : {e}")
     elif MODE == MODE_DATE:
         current_date = time.strftime('%d%m%y')
         s_display(current_date)
@@ -149,5 +149,5 @@ while True:
         try:
             requests.get(TASMOTA_URL, params=payload)
         except requests.RequestException as e:
-            print(f"Erreur de requête : {e}")
+            print(f"Tasmota request error : {e}")
     time.sleep(1)
